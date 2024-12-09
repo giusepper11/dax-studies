@@ -13,6 +13,10 @@
       {
         "name": "PBI_ProTooling",
         "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Calendar\",\"Customer Lookup\",\"Employee Lookup\",\"Food Inventory\",\"Product Lookup\",\"Sales by Store\",\"Store Lookup\"]"
       }
     ],
     "culture": "en-GB",
@@ -26,6 +30,1283 @@
           },
           "contentType": "json"
         }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "a12aecc7-f320-53db-5248-ec7ddebc1203",
+        "fromColumn": "transaction_date",
+        "fromTable": "Sales by Store",
+        "toColumn": "Transaction_Date",
+        "toTable": "Calendar"
+      },
+      {
+        "name": "94ce68fd-3ed5-72b1-e279-6af25f879956",
+        "fromColumn": "transaction_date",
+        "fromTable": "Food Inventory",
+        "toColumn": "Transaction_Date",
+        "toTable": "Calendar"
+      },
+      {
+        "name": "af0dfc59-a919-214f-a1ee-c1ffe0e49532",
+        "fromColumn": "customer_id",
+        "fromTable": "Sales by Store",
+        "toColumn": "customer_id",
+        "toTable": "Customer Lookup"
+      },
+      {
+        "name": "7647646e-dd93-61e5-20e3-07e4f0ef8644",
+        "fromColumn": "product_id",
+        "fromTable": "Sales by Store",
+        "toColumn": "product_id",
+        "toTable": "Product Lookup"
+      },
+      {
+        "name": "923aa734-7828-00bd-92bb-fe7fc2bc072c",
+        "fromColumn": "product_id",
+        "fromTable": "Food Inventory",
+        "toColumn": "product_id",
+        "toTable": "Product Lookup"
+      },
+      {
+        "name": "9185994c-2f65-4bb4-d8c7-9731fb786dc8",
+        "fromColumn": "staff_id",
+        "fromTable": "Sales by Store",
+        "toColumn": "staff_id",
+        "toTable": "Employee Lookup"
+      },
+      {
+        "name": "fe6fafa7-8e71-fb5b-ffc3-730185ac599e",
+        "fromColumn": "store_id",
+        "fromTable": "Sales by Store",
+        "toColumn": "store_id",
+        "toTable": "Store Lookup"
+      },
+      {
+        "name": "ef8d88e9-31d1-b28b-e5a0-d67cedd2c9af",
+        "fromColumn": "store_id",
+        "fromTable": "Food Inventory",
+        "toColumn": "store_id",
+        "toTable": "Store Lookup"
+      }
+    ],
+    "sourceQueryCulture": "en-GB",
+    "tables": [
+      {
+        "name": "Calendar",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Transaction_Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "isKey": true,
+            "lineageTag": "f7110f6f-a62d-4751-9fb4-aeb64ef7eae2",
+            "sourceColumn": "Transaction_Date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Date_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7da593f9-0461-450c-8dee-1e1f35b9c206",
+            "sourceColumn": "Date_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Week_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "29e377c9-7d79-4aa8-905e-0935ee547256",
+            "sourceColumn": "Week_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Week_Desc",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dd6cf0f5-2d50-406b-a311-2fad0d82d983",
+            "sourceColumn": "Week_Desc",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dd5a75c4-de34-4264-96ee-d2fd8f4672ca",
+            "sourceColumn": "Month_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Month_Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5115148c-593d-4d18-b626-2617597e2ac2",
+            "sourceColumn": "Month_Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quarter_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c045aa9c-4bf9-4566-9783-1de476370485",
+            "sourceColumn": "Quarter_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Quarter_Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a1b665ac-8c57-4d6e-ae85-2709be72925a",
+            "sourceColumn": "Quarter_Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f88b64c6-34f9-4289-8bd3-c72db79f1bad",
+            "sourceColumn": "Year_ID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "Week_Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ec66465b-731a-4a1b-8e8e-7331aff488dc",
+            "sourceColumn": "Week_Year",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "93cf9639-54bb-441e-8ff6-984a7a700f4c",
+        "partitions": [
+          {
+            "name": "Calendar",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Calendar.csv\"),[Delimiter=\",\", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Transaction_Date\", type date}, {\"Date_ID\", Int64.Type}, {\"Week_ID\", Int64.Type}, {\"Week_Desc\", type text}, {\"Month_ID\", Int64.Type}, {\"Month_Name\", type text}, {\"Quarter_ID\", Int64.Type}, {\"Quarter_Name\", type text}, {\"Year_ID\", Int64.Type}, {\"Week_Year\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Customer Lookup",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "customer_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isKey": true,
+            "lineageTag": "04d3a25b-f612-48d0-b31c-f63d51553e89",
+            "sourceColumn": "customer_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "home_store",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1f22649e-5eca-4e7d-a2b7-4b3eae1abf89",
+            "sourceColumn": "home_store",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_first-name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "735cd009-f362-4079-88b0-1e53fa2c1e5f",
+            "sourceColumn": "customer_first-name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_email",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2b2d733f-3648-4d04-85be-56fcf0e282ce",
+            "sourceColumn": "customer_email",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_since",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "c8f40212-d69c-4496-842c-7db246329d93",
+            "sourceColumn": "customer_since",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "loyalty_card_number",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c0b95211-9558-4ee7-892c-0cafc332016d",
+            "sourceColumn": "loyalty_card_number",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "birthdate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "f4507165-20dc-4933-84a5-a94c89c38a77",
+            "sourceColumn": "birthdate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "gender",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "84c4be1b-aba6-49af-9a00-f6f7d7a17d8e",
+            "sourceColumn": "gender",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "birth_year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "da7d767f-625c-4c29-abac-0d7068ebf6fc",
+            "sourceColumn": "birth_year",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "355438b5-291c-44ed-9ca4-685e00829ab1",
+        "partitions": [
+          {
+            "name": "Customer Lookup",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Customer Lookup.csv\"),[Delimiter=\",\", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"customer_id\", Int64.Type}, {\"home_store\", Int64.Type}, {\"customer_first-name\", type text}, {\"customer_email\", type text}, {\"customer_since\", type date}, {\"loyalty_card_number\", type text}, {\"birthdate\", type date}, {\"gender\", type text}, {\"birth_year\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Employee Lookup",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "staff_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isKey": true,
+            "lineageTag": "e62d8c75-aa85-4fe3-af44-60a730d13412",
+            "sourceColumn": "staff_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "first_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f3f19ffe-7d15-4b38-a64e-8cc3b4c3bb1f",
+            "sourceColumn": "first_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "last_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e45abae4-4858-4375-808c-f05a5e8bfdf3",
+            "sourceColumn": "last_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "position",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9ccaef00-44d1-4a6d-bb2c-20a304a8c6d4",
+            "sourceColumn": "position",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "start_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "7b26b9cc-a667-49e3-8fac-3fa55289f670",
+            "sourceColumn": "start_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "location",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "876c71cb-0f13-4af7-9cf3-a2250063ca88",
+            "sourceColumn": "location",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "3df49bda-9e6a-4be3-80eb-7c40de5d67d3",
+        "partitions": [
+          {
+            "name": "Employee Lookup",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Employee Lookup.csv\"),[Delimiter=\",\", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"staff_id\", Int64.Type}, {\"first_name\", type text}, {\"last_name\", type text}, {\"position\", type text}, {\"start_date\", type date}, {\"location\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Food Inventory",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "store_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dc415708-95d0-4ead-b638-bcaff45c6a23",
+            "sourceColumn": "store_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baked_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "16be5c30-8cba-4939-a2c9-e1050d37a3f3",
+            "sourceColumn": "baked_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "transaction_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "bf4912f1-5dca-4a68-9611-b51d63e2dd60",
+            "sourceColumn": "transaction_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3cec197a-8618-4c65-81db-d53608fb14d6",
+            "sourceColumn": "product_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "quantity_start_of_day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "4eac2a49-3e7b-4c92-88a0-44cf4e20dd56",
+            "sourceColumn": "quantity_start_of_day",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "quantity_sold",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "755ed061-b554-41e7-9295-e897ff9f8d17",
+            "sourceColumn": "quantity_sold",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "fe650e26-b166-4651-8dc4-dfe7a425020e",
+        "partitions": [
+          {
+            "name": "Food Inventory",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Food Inventory.csv\"),[Delimiter=\",\", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"store_id\", Int64.Type}, {\"baked_date\", type date}, {\"transaction_date\", type date}, {\"product_id\", Int64.Type}, {\"quantity_start_of_day\", Int64.Type}, {\"quantity_sold\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Product Lookup",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "product_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isKey": true,
+            "lineageTag": "ed9fe428-c8f3-49d0-be65-a4102b94011b",
+            "sourceColumn": "product_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product_group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e5ae38f0-611f-4c2f-8edf-418d4badaad8",
+            "sourceColumn": "product_group",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fc37d0ba-c014-46a5-a097-4c047ab96e17",
+            "sourceColumn": "product_category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a31f9b8e-bf0d-47df-861a-1b291ad0cacb",
+            "sourceColumn": "product_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1e855e3c-c7a0-4be4-ace1-a20068e77bcb",
+            "sourceColumn": "product",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "product_description",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "28666e91-dbf5-4078-b0eb-f26925e75378",
+            "sourceColumn": "product_description",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "unit_of_measure",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "de1c0c05-6741-4696-b4da-4e20084e8b3c",
+            "sourceColumn": "unit_of_measure",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "current_cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c8c8c02c-047a-4165-b027-e84c1ab1cc84",
+            "sourceColumn": "current_cost",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "current_wholesale_price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4c0a86e0-bc39-478c-9302-49358f39f513",
+            "sourceColumn": "current_wholesale_price",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "current_retail_price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e61ac5dd-07e3-458d-9330-5a31d835e14b",
+            "sourceColumn": "current_retail_price",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tax_exempt_yn",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c3bb5b3-1fd9-4025-994d-b1e1c812fb7f",
+            "sourceColumn": "tax_exempt_yn",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "promo_yn",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c5a660f0-0c46-4e0e-add2-4b5bb20105ff",
+            "sourceColumn": "promo_yn",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "new_product_yn",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "37231d50-e663-4f9e-8160-aac168a4896a",
+            "sourceColumn": "new_product_yn",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "a915dff0-de7a-42c4-b1c4-2fb0dc9cb36a",
+        "partitions": [
+          {
+            "name": "Product Lookup",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Product Lookup.csv\"),[Delimiter=\",\", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"product_id\", Int64.Type}, {\"product_group\", type text}, {\"product_category\", type text}, {\"product_type\", type text}, {\"product\", type text}, {\"product_description\", type text}, {\"unit_of_measure\", type text}, {\"current_cost\", type number}, {\"current_wholesale_price\", type number}, {\"current_retail_price\", type number}, {\"tax_exempt_yn\", type text}, {\"promo_yn\", type text}, {\"new_product_yn\", type text}, {\"\", Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Sales by Store",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "transaction_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "99042228-10d8-4d49-b097-871553252d7b",
+            "sourceColumn": "transaction_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "transaction_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "52b42546-b7b7-4622-a8e9-5229ebe11e8a",
+            "sourceColumn": "transaction_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "transaction_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Time",
+            "lineageTag": "f4fd9428-41ab-4c7d-b61c-41bae79d0657",
+            "sourceColumn": "transaction_time",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c9e1f982-636b-4833-90d3-220fc8c1b9df",
+            "sourceColumn": "store_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "staff_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "851e2bdb-7885-4ef8-99f2-0582e73d2d31",
+            "sourceColumn": "staff_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "17866fc8-7af4-448b-8093-ee0cafdd034a",
+            "sourceColumn": "customer_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "instore_yn",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8bcbddee-d27e-450a-b8c8-73663843ba8c",
+            "sourceColumn": "instore_yn",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "71c8f127-5e5b-4aa9-a0b5-637c5739168b",
+            "sourceColumn": "order",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "line_item_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "1d84b058-4ed2-4566-a82b-dffd74e04124",
+            "sourceColumn": "line_item_id",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "product_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9cb44dc1-a4f3-4bca-b7b7-fe73ede20266",
+            "sourceColumn": "product_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "quantity_sold",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e76be056-c154-4990-9308-ced217b7f591",
+            "sourceColumn": "quantity_sold",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "unit_price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0e912c9c-41aa-4a4d-b21e-ddee0c96fbbd",
+            "sourceColumn": "unit_price",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "promo_item_yn",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "09b25e56-7ded-4802-b72b-68a9a552a596",
+            "sourceColumn": "promo_item_yn",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "c51e4495-fcba-4b2a-9b8c-1687e5845f50",
+        "partitions": [
+          {
+            "name": "Sales by Store",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Sales by Store.csv\"),[Delimiter=\",\", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"transaction_id\", Int64.Type}, {\"transaction_date\", type date}, {\"transaction_time\", type time}, {\"store_id\", Int64.Type}, {\"staff_id\", Int64.Type}, {\"customer_id\", Int64.Type}, {\"instore_yn\", type text}, {\"order\", Int64.Type}, {\"line_item_id\", Int64.Type}, {\"product_id\", Int64.Type}, {\"quantity_sold\", Int64.Type}, {\"unit_price\", type number}, {\"promo_item_yn\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Store Lookup",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "store_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isKey": true,
+            "lineageTag": "55a48c95-0d35-47d9-b968-2c00c7293bbe",
+            "sourceColumn": "store_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8bede19f-680e-411b-a3f9-d54cdf175dad",
+            "sourceColumn": "store_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_square_feet",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "eaf6429c-a01e-41c3-870a-cf465713f89c",
+            "sourceColumn": "store_square_feet",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "store_address",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5ea19959-a259-4c83-8d33-2434caa0858f",
+            "sourceColumn": "store_address",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_city",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3565cf7e-52ec-40ae-b153-622be3064f17",
+            "sourceColumn": "store_city",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_state_province",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1792131b-6085-4309-a144-59835e886f1f",
+            "sourceColumn": "store_state_province",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "store_postal_code",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "04889af7-3b83-4952-82c4-1fc8f4fe6da3",
+            "sourceColumn": "store_postal_code",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "store_longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e967f605-713e-431d-94f8-1f73072d7593",
+            "sourceColumn": "store_longitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "store_latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "8f437936-e83b-47d7-96ad-a216b3bf69bb",
+            "sourceColumn": "store_latitude",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "manager",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ee4a7add-51a0-47ea-bc62-35b3c2ea87b7",
+            "sourceColumn": "manager",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Neighorhood",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1e8ef1f0-0b8b-4dd4-a9ec-f444a7402709",
+            "sourceColumn": "Neighorhood",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "fe47f845-dfb9-4b8a-95bc-0994e2cb6886",
+        "partitions": [
+          {
+            "name": "Store Lookup",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\PowerBI\\Advanced Dax Course\\Development\\dax-studies\\raw_data\\Store Lookup.csv\"),[Delimiter=\",\", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"store_id\", Int64.Type}, {\"store_type\", type text}, {\"store_square_feet\", Int64.Type}, {\"store_address\", type text}, {\"store_city\", type text}, {\"store_state_province\", type text}, {\"store_postal_code\", Int64.Type}, {\"store_longitude\", type number}, {\"store_latitude\", type number}, {\"manager\", Int64.Type}, {\"Neighorhood\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }

@@ -7,7 +7,99 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 432,
+            "y": 73
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "93cf9639-54bb-441e-8ff6-984a7a700f4c",
+          "size": {
+            "height": 186,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 756,
+            "y": 76
+          },
+          "nodeIndex": "Customer Lookup",
+          "nodeLineageTag": "355438b5-291c-44ed-9ca4-685e00829ab1",
+          "size": {
+            "height": 207,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1703,
+            "y": 323
+          },
+          "nodeIndex": "Employee Lookup",
+          "nodeLineageTag": "3df49bda-9e6a-4be3-80eb-7c40de5d67d3",
+          "size": {
+            "height": 196,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1152,
+            "y": 624
+          },
+          "nodeIndex": "Food Inventory",
+          "nodeLineageTag": "fe650e26-b166-4651-8dc4-dfe7a425020e",
+          "size": {
+            "height": 366,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1056,
+            "y": 83
+          },
+          "nodeIndex": "Product Lookup",
+          "nodeLineageTag": "a915dff0-de7a-42c4-b1c4-2fb0dc9cb36a",
+          "size": {
+            "height": 209,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 830,
+            "y": 615
+          },
+          "nodeIndex": "Sales by Store",
+          "nodeLineageTag": "c51e4495-fcba-4b2a-9b8c-1687e5845f50",
+          "size": {
+            "height": 380,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1385,
+            "y": 111
+          },
+          "nodeIndex": "Store Lookup",
+          "nodeLineageTag": "fe47f845-dfb9-4b8a-95bc-0994e2cb6886",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
       "name": "All tables",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,
