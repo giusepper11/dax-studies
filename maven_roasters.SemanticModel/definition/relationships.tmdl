@@ -1,0 +1,32 @@
+relationship a12aecc7-f320-53db-5248-ec7ddebc1203
+	fromColumn: 'Sales by Store'.transaction_date
+	toColumn: Calendar.Transaction_Date
+
+relationship 94ce68fd-3ed5-72b1-e279-6af25f879956
+	fromColumn: 'Food Inventory'.transaction_date
+	toColumn: Calendar.Transaction_Date
+
+relationship af0dfc59-a919-214f-a1ee-c1ffe0e49532
+	fromColumn: 'Sales by Store'.customer_id
+	toColumn: 'Customer Lookup'.customer_id
+
+relationship 7647646e-dd93-61e5-20e3-07e4f0ef8644
+	fromColumn: 'Sales by Store'.product_id
+	toColumn: 'Product Lookup'.product_id
+
+relationship 923aa734-7828-00bd-92bb-fe7fc2bc072c
+	fromColumn: 'Food Inventory'.product_id
+	toColumn: 'Product Lookup'.product_id
+
+relationship 9185994c-2f65-4bb4-d8c7-9731fb786dc8
+	fromColumn: 'Sales by Store'.staff_id
+	toColumn: 'Employee Lookup'.staff_id
+
+relationship fe6fafa7-8e71-fb5b-ffc3-730185ac599e
+	fromColumn: 'Sales by Store'.store_id
+	toColumn: 'Store Lookup'.store_id
+
+relationship ef8d88e9-31d1-b28b-e5a0-d67cedd2c9af
+	fromColumn: 'Food Inventory'.store_id
+	toColumn: 'Store Lookup'.store_id
+

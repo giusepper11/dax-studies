@@ -1,0 +1,143 @@
+table 'Measures Table'
+	lineageTag: de347450-0557-4571-ba9d-cef2f6c9c373
+
+	measure Cost =
+			
+			SUMX(
+			    'Sales by Store',                   --Return the Sales by Store table
+			    'Sales by Store'[quantity_sold] *   --evaluate expression quantity sold times from a related table
+			    RELATED(
+			        'Product Lookup'[current_cost]
+			    )
+			)
+		displayFolder: Sales By Store
+		lineageTag: 6a077332-e137-4b59-9fbf-7c87cb9c19f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customer Sales' =
+			
+			SUMX(
+			    'Sales by Store',
+			    'Sales by Store'[quantity_sold] * 'Sales by Store'[unit_price]
+			)
+		displayFolder: Sales By Store
+		lineageTag: a4070089-3026-4395-9ef8-149ff3109e18
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Profit =
+			
+			[Customer Sales] - [Cost]
+		displayFolder: Sales By Store
+		lineageTag: 20e9e185-0d06-4b9f-8c1f-f5f013b002b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customer Sales (Last Year)' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    DATEADD(
+			        'Calendar'[Transaction_Date],
+			        -1,
+			        YEAR
+			        )
+			    )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Sales By Store
+		lineageTag: 3adde8cc-05d5-40a0-83db-aca15c96b357
+
+	measure 'Customer Sales Last Year (ISBLANK)' =
+			
+			IF(
+			    ISBLANK(
+			        [Customer Sales (Last Year)]
+			    ),
+			    "No Sales",
+			    [Customer Sales (Last Year)])
+		displayFolder: Sales By Store
+		lineageTag: 98ca2074-d67a-47f3-8337-ffca765cb5d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders by Females' =
+			
+			VAR TotalOrdersFemale =
+			CALCULATE(
+			    SUM(
+			        'Food Inventory'[quantity_sold]
+			    ),
+			    FILTER(
+			        'Customer Lookup',
+			        'Customer Lookup'[gender] = "F"
+			    )
+			)
+			RETURN
+			TotalOrdersFemale
+		displayFolder: Sales By Store
+		lineageTag: b27edb51-b1b8-42d7-9503-709976aa77c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Order by Females (Wrong)' = ```
+			
+			VAR TotalOrder  =
+			SUM(
+			    'Food Inventory'[quantity_sold]
+			)
+			RETURN
+			CALCULATE(
+			    TotalOrder,
+			    FILTER(
+			        'Customer Lookup',
+			        'Customer Lookup'[gender] = "F"
+			        )
+			    )
+			
+			```
+		formatString: 0
+		displayFolder: Sales By Store
+		lineageTag: 07aa3ad2-67fc-43e7-91c7-30f04f1ecc84
+
+	measure '% Quantity Sold by Females' =
+			
+			VAR TotalOrdersFemale =
+			CALCULATE(
+			    SUM(
+			        'Sales by Store'[quantity_sold]
+			    ),
+			    FILTER(
+			        'Customer Lookup',
+			        'Customer Lookup'[gender] = "F"
+			    )
+			)
+			VAR QuantitySold =
+			SUM(
+			    'Sales by Store'[quantity_sold]
+			)
+			
+			VAR Ratio =
+			DIVIDE(
+			    TotalOrdersFemale,
+			    QuantitySold,
+			    "-"
+			)
+			
+			RETURN Ratio
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sales By Store
+		lineageTag: 1ab8ddb0-d63b-431f-b879-dec2937e6f7c
+
+	partition 'Measures Table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCk7MLchJVdJRUoqNBQA=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t, Column2 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column2", "Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

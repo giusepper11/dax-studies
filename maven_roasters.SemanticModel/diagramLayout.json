@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 674,
         "y": 0
       },
       "nodes": [
         {
           "location": {
             "x": 432,
-            "y": 73
+            "y": 109.5
           },
           "nodeIndex": "Calendar",
           "nodeLineageTag": "93cf9639-54bb-441e-8ff6-984a7a700f4c",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 756,
-            "y": 76
+            "y": 112.5
           },
           "nodeIndex": "Customer Lookup",
           "nodeLineageTag": "355438b5-291c-44ed-9ca4-685e00829ab1",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 1703,
-            "y": 323
+            "y": 359.5
           },
           "nodeIndex": "Employee Lookup",
           "nodeLineageTag": "3df49bda-9e6a-4be3-80eb-7c40de5d67d3",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 1152,
-            "y": 624
+            "y": 660.5
           },
           "nodeIndex": "Food Inventory",
           "nodeLineageTag": "fe650e26-b166-4651-8dc4-dfe7a425020e",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 1056,
-            "y": 83
+            "y": 119.5
           },
           "nodeIndex": "Product Lookup",
           "nodeLineageTag": "a915dff0-de7a-42c4-b1c4-2fb0dc9cb36a",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 830,
-            "y": 615
+            "y": 651.5
           },
           "nodeIndex": "Sales by Store",
           "nodeLineageTag": "c51e4495-fcba-4b2a-9b8c-1687e5845f50",
@@ -89,7 +89,7 @@
         {
           "location": {
             "x": 1385,
-            "y": 111
+            "y": 147.5
           },
           "nodeIndex": "Store Lookup",
           "nodeLineageTag": "fe47f845-dfb9-4b8a-95bc-0994e2cb6886",
@@ -98,6 +98,19 @@
             "width": 234
           },
           "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1555,
+            "y": 433.5
+          },
+          "nodeIndex": "Measures Table",
+          "nodeLineageTag": "de347450-0557-4571-ba9d-cef2f6c9c373",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

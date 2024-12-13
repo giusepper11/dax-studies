@@ -1,0 +1,99 @@
+table 'Customer Lookup'
+	lineageTag: 355438b5-291c-44ed-9ca4-685e00829ab1
+
+	column customer_id
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 04d3a25b-f612-48d0-b31c-f63d51553e89
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_store
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f22649e-5eca-4e7d-a2b7-4b3eae1abf89
+		summarizeBy: none
+		sourceColumn: home_store
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_first-name
+		dataType: string
+		lineageTag: 735cd009-f362-4079-88b0-1e53fa2c1e5f
+		summarizeBy: none
+		sourceColumn: customer_first-name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_email
+		dataType: string
+		lineageTag: 2b2d733f-3648-4d04-85be-56fcf0e282ce
+		summarizeBy: none
+		sourceColumn: customer_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_since
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c8f40212-d69c-4496-842c-7db246329d93
+		summarizeBy: none
+		sourceColumn: customer_since
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column loyalty_card_number
+		dataType: string
+		lineageTag: c0b95211-9558-4ee7-892c-0cafc332016d
+		summarizeBy: none
+		sourceColumn: loyalty_card_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column birthdate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f4507165-20dc-4933-84a5-a94c89c38a77
+		summarizeBy: none
+		sourceColumn: birthdate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column gender
+		dataType: string
+		lineageTag: 84c4be1b-aba6-49af-9a00-f6f7d7a17d8e
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_year
+		dataType: int64
+		formatString: 0
+		lineageTag: da7d767f-625c-4c29-abac-0d7068ebf6fc
+		summarizeBy: none
+		sourceColumn: birth_year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Lookup' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\PowerBI\Advanced Dax Course\Development\dax-studies\raw_data\Customer Lookup.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customer_id", Int64.Type}, {"home_store", Int64.Type}, {"customer_first-name", type text}, {"customer_email", type text}, {"customer_since", type date}, {"loyalty_card_number", type text}, {"birthdate", type date}, {"gender", type text}, {"birth_year", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
