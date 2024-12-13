@@ -92,6 +92,46 @@ table Calendar
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'transaction_date (yyyy-mm-dd)' =
+			
+			FORMAT(
+			    'Calendar'[Transaction_Date],
+			    "yyyy-mm-dd"
+			)
+		lineageTag: 505741be-4585-48c5-affb-e81d9ac149a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Half' =
+			
+			SWITCH(
+			    'Calendar'[Month_ID],
+			    1, "1H",
+			    2, "1H",
+			    3, "1H",
+			    4, "1H",
+			    5, "1H",
+			    6, "1H",
+			    7, "2H",
+			    8, "2H",
+			    9, "2H",
+			    10, "2H",
+			    11, "2H",
+			    12, "2H",
+			    "-"
+			)
+		lineageTag: 43cd9694-f3b3-48a7-ba64-47f072317203
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Formatted' = 'Calendar'[Quarter_Name] & "-" & 'Calendar'[Year_ID]
+		lineageTag: 4ce2d7f1-75a5-4c74-8943-a3a8dce4c2f7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Calendar = m
 		mode: import
 		source =

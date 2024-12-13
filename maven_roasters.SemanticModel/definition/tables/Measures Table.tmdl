@@ -1,15 +1,17 @@
 table 'Measures Table'
 	lineageTag: de347450-0557-4571-ba9d-cef2f6c9c373
 
-	measure Cost =
+	measure Cost = ```
 			
 			SUMX(
-			    'Sales by Store',                   --Return the Sales by Store table
-			    'Sales by Store'[quantity_sold] *   --evaluate expression quantity sold times from a related table
+			    'Sales by Store',
+			    'Sales by Store'[quantity_sold] *
 			    RELATED(
 			        'Product Lookup'[current_cost]
 			    )
 			)
+			
+			```
 		displayFolder: Sales By Store
 		lineageTag: 6a077332-e137-4b59-9fbf-7c87cb9c19f0
 
@@ -29,10 +31,9 @@ table 'Measures Table'
 	measure Profit =
 			
 			[Customer Sales] - [Cost]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		displayFolder: Sales By Store
 		lineageTag: 20e9e185-0d06-4b9f-8c1f-f5f013b002b5
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Customer Sales (Last Year)' =
 			
@@ -128,6 +129,145 @@ table 'Measures Table'
 		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: Sales By Store
 		lineageTag: 1ab8ddb0-d63b-431f-b879-dec2937e6f7c
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT(
+			    'Customer Lookup'[customer_id]
+			)
+		formatString: 0
+		displayFolder: Scalar Measures
+		lineageTag: f645b846-347b-4450-9b97-2a1165282e3a
+
+	measure 'Total Employess' =
+			
+			COUNTROWS(
+			    'Employee Lookup'
+			)
+		formatString: #,0
+		displayFolder: Scalar Measures
+		lineageTag: 0241a15f-32be-42fe-9c8a-35e4e5755bc6
+
+	measure 'Formatted Cost' = ```
+			
+			 ROUND(
+			    CURRENCY(
+			        [Cost]
+			    ),
+			    2
+			)
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Sales By Store
+		lineageTag: 9a81d33a-6a25-461e-a467-0027b720a0d3
+
+	measure 'Formatted Customer Sales' =
+			
+			CURRENCY(
+			    [Customer Sales]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Sales By Store
+		lineageTag: a43fddda-3f6e-4f06-a6cb-63a5e7312996
+
+	measure 'Formatted Customer Sales (Last Year)' =
+			
+			VAR UnformattedData =
+			COALESCE(
+			    [Customer Sales (Last Year)],
+			    "-"
+			)
+			
+			RETURN UnformattedData
+		displayFolder: Sales By Store
+		lineageTag: 0634c649-1477-4828-a340-ed4124cbdac3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Store 3 Sales of Whole Beans & Teas' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    'Store Lookup'[store_id] = 3,
+			    'Product Lookup'[product_group] = "Whole Bean/Teas"
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a64e636d-9253-44cf-ba82-f176e3267679
+
+	measure 'Store 3 Sales of Whole Beans & Teas (All Modifier)' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    'Store Lookup'[store_id] = 3,
+			    'Product Lookup'[product_group] = "Whole Bean/Teas",
+			    ALL('Store Lookup')
+			)
+		lineageTag: 1f0f1209-0d65-420d-b9ae-0ab0711f86ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit' =
+			
+			CALCULATE(
+			    [Profit],
+			    REMOVEFILTERS(
+			        'Sales by Store'
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: a131d870-f812-4464-8ea9-b398793c5364
+
+	measure 'Store 5 Profit' =
+			
+			CALCULATE(
+			    [Profit],
+			    KEEPFILTERS(
+			        'Store Lookup'[store_id]=5
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: fa7b99e8-e856-4641-9fa6-76ef90b889ea
+
+	measure 'Store 3 Profit' =
+			
+			CALCULATE(
+			    [Profit],
+			    KEEPFILTERS(
+			        'Store Lookup'[store_id] = 3
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 119726fd-eb9b-4576-88a9-20235b0fd55f
+
+	measure 'Store 8 Profit' =
+			
+			CALCULATE(
+			    [Profit],
+			    KEEPFILTERS(
+			        'Store Lookup'[store_id]= 8
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 1a0b0466-44ef-45c1-980f-f4f9653608b2
+
+	measure '% of Store Sales' =
+			
+			VAR AllStoresSales=
+			CALCULATE(
+			    [Profit],
+			    REMOVEFILTERS(
+			        'Store Lookup'[store_id]
+			    )
+			)
+			VAR PercentOfTotal=
+			DIVIDE(
+			    [Profit],
+			    AllStoresSales
+			)
+			
+			RETURN PercentOfTotal
+		formatString: 0%;-0%;0%
+		lineageTag: 4f6c0fed-6e25-4886-976d-75b338253e18
 
 	partition 'Measures Table' = m
 		mode: import

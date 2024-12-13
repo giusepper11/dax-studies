@@ -83,6 +83,19 @@ table 'Customer Lookup'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Current Age' = ```
+			
+			DATEDIFF(
+			    'Customer Lookup'[birthdate], 
+			    UTCNOW(),
+			    YEAR)
+			```
+		formatString: 0
+		lineageTag: 579cedda-0697-4549-b576-3a6e9dbb12f6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Customer Lookup' = m
 		mode: import
 		source =

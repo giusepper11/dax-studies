@@ -121,6 +121,35 @@ table 'Sales by Store'
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Time Group' = ```
+			
+			FLOOR(
+			    'Sales by Store'[transaction_time],
+			    "1:00"    
+			)
+			```
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 2aa98b79-54a3-471f-abf4-b27ab37ffc78
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Total Revenue' =
+			
+			CURRENCY(
+			    'Sales by Store'[quantity_sold] * 'Sales by Store'[unit_price]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ead62b0f-f909-403e-8d83-d5857a1cdad2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Sales by Store' = m
 		mode: import
 		source =
