@@ -22,6 +22,8 @@ ref table 'Product Lookup'
 ref table 'Sales by Store'
 ref table 'Store Lookup'
 ref table 'Measures Table'
+ref table 'Distinct Example'
+ref table 'Values Example'
 
 ref cultureInfo en-GB
 

@@ -23,10 +23,9 @@ table 'Measures Table'
 			    'Sales by Store',
 			    'Sales by Store'[quantity_sold] * 'Sales by Store'[unit_price]
 			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
 		displayFolder: Sales By Store
 		lineageTag: a4070089-3026-4395-9ef8-149ff3109e18
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure Profit =
 			
@@ -268,6 +267,92 @@ table 'Measures Table'
 			RETURN PercentOfTotal
 		formatString: 0%;-0%;0%
 		lineageTag: 4f6c0fed-6e25-4886-976d-75b338253e18
+
+	measure 'Count of Product ID (Distinct)' =
+			
+			DISTINCTCOUNT(
+			    'Product Lookup'[product_id]
+			)
+		formatString: 0
+		lineageTag: 1775af0a-3fec-44ee-a7f7-7dd64e608c02
+
+	measure 'Count of Product ID (Values)' =
+			
+			COUNTROWS(
+			    VALUES(
+			        'Product Lookup'[product_id]
+			    )
+			)
+		formatString: 0
+		lineageTag: 723f15cf-95a2-4c3b-82d1-70abf4b92f1c
+
+	measure 'Retail Price (SELECTEDVALUE)' =
+			
+			SELECTEDVALUE(
+			    'Product Lookup'[current_retail_price]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3fcbd3f4-3d5c-4e8a-b46e-48c6ad5d5799
+
+	measure 'Quantity Sold' =
+			
+			DIVIDE(
+			    [Customer Sales],
+			    SELECTEDVALUE(
+			        'Product Lookup'[current_retail_price]
+			    )
+			)
+		formatString: #,0.00
+		lineageTag: a16b04b5-2bde-4641-b756-c6bb4faeaeef
+
+	measure 'Customer Sales (ALLEXCEPT)' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    ALLEXCEPT(
+			        'Sales by Store',
+			        'Product Lookup'[product_group],
+			        'Calendar'[Transaction_Date]
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: c82cb63b-0a60-4636-b3c1-56212fc61279
+
+	measure 'Customer Sales (ALLEXCEPT Assignment)' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    ALLEXCEPT(
+			        'Sales by Store',
+			        'Calendar'[Transaction_Date],
+			        'Store Lookup'[store_id],
+			        'Customer Lookup'[customer_first-name],
+			        'Product Lookup'[product_group]
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 74b55c63-7c31-4dfc-954a-dd92c7624f64
+
+	measure '% of Store-Level Sales' = ```
+			
+			VAR StoreLevelSales =
+			CALCULATE(
+			    [Customer Sales],
+			    REMOVEFILTERS('Customer Lookup'),
+			    KEEPFILTERS('Calendar')
+			)
+			
+			VAR Ratio =
+			DIVIDE(
+			    [Customer Sales (ALLEXCEPT Assignment)],
+			    StoreLevelSales
+			)
+			
+			RETURN Ratio
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 16d3c98d-8415-4667-9058-9ebd9f793001
 
 	partition 'Measures Table' = m
 		mode: import

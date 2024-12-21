@@ -111,6 +111,24 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {},
+          "nodeIndex": "Distinct Example",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Values Example",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

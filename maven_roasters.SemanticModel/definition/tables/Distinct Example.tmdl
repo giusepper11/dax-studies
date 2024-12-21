@@ -1,0 +1,21 @@
+table 'Distinct Example'
+	lineageTag: 0d1ba765-abfc-43b6-b580-418262846cad
+
+	column product_group
+		lineageTag: d5ef69f4-ad6a-4bd4-975c-7fd0018598f2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Product Lookup[product_group]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Distinct Example' = calculated
+		mode: import
+		source =
+				
+				DISTINCT(
+				    'Product Lookup'[product_group]
+				)
+
+	annotation PBI_Id = c3312d7a022b4b64b08db3c3afcca5fa
+

@@ -117,7 +117,7 @@ table 'Product Lookup'
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("D:\PowerBI\Advanced Dax Course\Development\dax-studies\raw_data\Product Lookup.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("D:\PowerBI\Advanced Dax Course\Development\dax-studies\raw_data\Product Lookup (Updated).csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"product_id", Int64.Type}, {"product_group", type text}, {"product_category", type text}, {"product_type", type text}, {"product", type text}, {"product_description", type text}, {"unit_of_measure", type text}, {"current_cost", type number}, {"current_wholesale_price", type number}, {"current_retail_price", type number}, {"tax_exempt_yn", type text}, {"promo_yn", type text}, {"new_product_yn", type text}, {"", Int64.Type}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{""})
