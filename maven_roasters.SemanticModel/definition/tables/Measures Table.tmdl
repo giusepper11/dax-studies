@@ -354,6 +354,93 @@ table 'Measures Table'
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 16d3c98d-8415-4667-9058-9ebd9f793001
 
+	measure 'Customer Sales (ALLSELECTED)' =
+			
+			CALCULATE(
+			    [Customer Sales],
+			    ALLSELECTED(
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 9b41f416-37da-4408-86b6-d05ddeb25735
+
+	measure 'Total Sold' =
+			
+			SUM(
+			    'Food Inventory'[quantity_sold]
+			)
+		formatString: #,0
+		displayFolder: Food Inventory
+		lineageTag: 46d46dc4-b8c9-42a0-8e12-dcecb09e3cc5
+
+	measure 'Total Baked' =
+			
+			SUM(
+			    'Food Inventory'[quantity_start_of_day]
+			)
+		formatString: #,0
+		displayFolder: Food Inventory
+		lineageTag: 3f95174e-502e-4e1c-acdc-5a559794b003
+
+	measure '% of Total Baked' =
+			
+			VAR SelectedTotalBaked =
+			CALCULATE(
+			    [Total Baked],
+			    ALLSELECTED(
+			    )
+			)
+			VAR Ratio=
+			DIVIDE(
+			    [Total Baked],
+			    SelectedTotalBaked
+			)
+			
+			RETURN Ratio
+		formatString: 0%;-0%;0%
+		displayFolder: Food Inventory
+		lineageTag: d034d4e5-c200-4f8e-885d-3749e714aa84
+
+	measure '% of Total Sold' =
+			
+			VAR SelectedTotalSold =
+			CALCULATE(
+			    [Total Sold],
+			    ALLSELECTED(
+			    )
+			)
+			VAR Ratio=
+			DIVIDE(
+			    [Total Sold],
+			    SelectedTotalSold
+			)
+			
+			RETURN Ratio
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Food Inventory
+		lineageTag: f2759154-f3a3-4ddd-afb1-ad9e2f025680
+
+	measure '% of All Baked' =
+			
+			VAR AllBaked=
+			CALCULATE(
+			    [Total Baked],
+			    REMOVEFILTERS(
+			        'Food Inventory'
+			    )
+			)
+			
+			VAR Ratio =
+			DIVIDE(
+			    [Total Baked],
+			    AllBaked
+			)
+			
+			RETURN Ratio
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Food Inventory
+		lineageTag: a724dffc-5ff4-4096-9d7b-c38cbf4fbea2
+
 	partition 'Measures Table' = m
 		mode: import
 		source =

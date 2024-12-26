@@ -11,14 +11,6 @@ table 'Food Inventory'
 		formatString: #,0
 		lineageTag: 3b43fffc-a569-4288-9f60-288a1dd6eeb9
 
-	measure 'SUM Quantity Sold' =
-			
-			SUM(
-			    'Food Inventory'[quantity_sold]
-			)
-		formatString: #,0
-		lineageTag: 46d46dc4-b8c9-42a0-8e12-dcecb09e3cc5
-
 	column store_id
 		dataType: int64
 		formatString: 0

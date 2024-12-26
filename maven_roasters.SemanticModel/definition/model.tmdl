@@ -24,6 +24,7 @@ ref table 'Store Lookup'
 ref table 'Measures Table'
 ref table 'Distinct Example'
 ref table 'Values Example'
+ref table 'SELECTCOLUMNS Demo'
 
 ref cultureInfo en-GB
 
